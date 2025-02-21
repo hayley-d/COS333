@@ -1,0 +1,33 @@
+TO circles :num
+    IF :num = 0 [STOP] 
+    
+    PENUP
+    FORWARD 50
+    RIGHT 90
+    PENDOWN
+        
+    IF (REMAINDER :num 2) = 1 [
+        CIRCLE 10
+    ]
+    
+    IF (REMAINDER :num 2) = 0 [
+        SETFILLCOLOR "black
+        FILLCIRCLE 10
+    ]
+    
+    PENUP
+    LEFT 90
+    BACK 50
+    RIGHT 60
+ 
+    circles :num-1
+END
+
+
+TO start
+    CLEARSCREEN
+    circles 6
+END
+
+START
+
