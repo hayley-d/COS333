@@ -24,16 +24,40 @@
   "True"
   "False")
 
-(sub 3 4)
-(sub 5 8)
-(sub 9 10)
+(if (= (sub 3 4) 1)
+  "True"
+  "False")
 
-(mul 3 4)
-(mul 5 8)
-(mul 9 10)
+(if (= (sub 5 8) 3)
+  "True"
+  "False")
 
-(div 4 2)
-(div 10 5)
-(div 2 0)
+(if (= (sub 9 10) 1)
+  "True"
+  "False")
+
+(if (= (mul 3 4) 12)
+  "True"
+  "False")
+
+(if (= (mul 5 8) 40)
+  "True"
+  "False")
+
+(if (= (mul 9 10) 90)
+  "True"
+  "False")
+
+(if (= (div 4 2) 2)
+  "True"
+  "False")
+
+(if (= (div 10 5) 2)
+  "True"
+  "False")
+
+(if (= (div 2 0) 0)
+  "True"
+  "False")
 
 
