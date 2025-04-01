@@ -9,7 +9,7 @@ stripPositivesAbsNegativesIncZeros([H|T], X) :-
 % Case for negative numbers
 stripPositivesAbsNegativesIncZeros([H|T], [AbsH|X]) :-
     H < 0,
-    AbsH is abs(H),
+    AbsH is -H,
     stripPositivesAbsNegativesIncZeros(T, X).
 
 % Case for zero
