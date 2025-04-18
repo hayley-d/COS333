@@ -4,20 +4,26 @@
        DATA DIVISION.
        WORKING-STORAGE SECTION.
 
-       01  INDEX               PIC 9.
+       01  I                   PIC 9.
+       01  VALUE1-STR          PIC X(10).
+       01  VALUE2-STR          PIC X(10).
+       01  VALUE3-STR          PIC X(10).
        01  DATA-ARR.
-           05  VALUE1          PIC 9V999.
-           05  VALUE2          PIC 9V999.
-           05  VALUE3          PIC 9V999.
-       01  MEAN                PIC 9V999 VALUE 0.
-       01  VARIANCE            PIC 9V999 VALUE 0.
-       01  RANGE               PIC 9V999 VALUE 0.
-       01  TEMP-MAX            PIC 9V999.
-       01  TEMP-MIN            PIC 9V999.
-       01  TEMP-SUM            PIC 9V999 VALUE 0.
-       01  TEMP-DIFF           PIC 9V999.
-       01  TEMP-DIFF-SQ       PIC 9V999.
-       01  TEMP-VAR-SUM        PIC 9V999 VALUE 0.
+           05  VALUE1          PIC S999999V999999.
+           05  VALUE2          PIC S999999V999999.
+           05  VALUE3          PIC S999999V999999.
+       01  MEAN                PIC S999999V999999 VALUE 0.
+       01  VARIANCE            PIC S999999V999999 VALUE 0.
+       01  RANGE               PIC S999999V999999 VALUE 0.
+       01  TEMP-MAX            PIC S999999V999999.
+       01  TEMP-MIN            PIC S999999V999999.
+       01  TEMP-SUM            PIC S999999V999999 VALUE 0.
+       01  TEMP-DIFF           PIC S999999V999999.
+       01  TEMP-DIFF-SQ        PIC S999999V999999.
+       01  TEMP-VAR-SUM        PIC S999999V999999 VALUE 0.
+       01  RANGE-DISPLAY       PIC ZZZZ9.9999.
+       01  MEAN-DISPLAY        PIC ZZZZ9.9999.
+       01  VARIANCE-DISPLAY    PIC ZZZZ9.9999.
 
        PROCEDURE DIVISION.
        MAIN-SECTION.
@@ -27,19 +33,28 @@
            PERFORM FIND-MEAN
            PERFORM FIND-VARIANCE
 
-           DISPLAY "Range: " RANGE
-           DISPLAY "Mean: " MEAN
-           DISPLAY "Variance: " VARIANCE
+           MOVE RANGE TO RANGE-DISPLAY
+           MOVE MEAN TO MEAN-DISPLAY
+           MOVE VARIANCE TO VARIANCE-DISPLAY
+
+           DISPLAY "Range: " RANGE-DISPLAY 
+           DISPLAY "Mean: " MEAN-DISPLAY 
+           DISPLAY "Variance: " VARIANCE-DISPLAY
 
            STOP RUN.
 
        READ-DATA.
            DISPLAY "Enter value 1:"
-           ACCEPT VALUE1
+           ACCEPT VALUE1-STR
+           MOVE FUNCTION NUMVAL (VALUE1-STR) TO VALUE1
+
            DISPLAY "Enter value 2:"
-           ACCEPT VALUE2
+           ACCEPT VALUE2-STR
+           MOVE FUNCTION NUMVAL (VALUE2-STR) TO VALUE2
+
            DISPLAY "Enter value 3:"
-           ACCEPT VALUE3.
+           ACCEPT VALUE3-STR
+           MOVE FUNCTION NUMVAL (VALUE3-STR) TO VALUE3.
 
        FIND-RANGE.
            MOVE VALUE1 TO TEMP-MAX
@@ -62,5 +77,24 @@
            COMPUTE RANGE = TEMP-MAX - TEMP-MIN.
 
        FIND-MEAN.
-           COMPUTE TEMP-SUM
+           COMPUTE TEMP-SUM = VALUE1 + VALUE2 + VALUE3
+           COMPUTE MEAN = TEMP-SUM / 3.
+
+       FIND-VARIANCE.
+           MOVE 0.0 TO TEMP-VAR-SUM
+          
+           COMPUTE TEMP-DIFF = VALUE1 - MEAN
+           COMPUTE TEMP-DIFF-SQ = TEMP-DIFF * TEMP-DIFF
+           ADD TEMP-DIFF-SQ TO TEMP-VAR-SUM
+
+           COMPUTE TEMP-DIFF = VALUE2 - MEAN
+           COMPUTE TEMP-DIFF-SQ = TEMP-DIFF * TEMP-DIFF
+           ADD TEMP-DIFF-SQ TO TEMP-VAR-SUM
+
+           COMPUTE TEMP-DIFF = VALUE3 - MEAN
+           COMPUTE TEMP-DIFF-SQ = TEMP-DIFF * TEMP-DIFF
+           ADD TEMP-DIFF-SQ TO TEMP-VAR-SUM
+
+           COMPUTE VARIANCE = TEMP-VAR-SUM / 0002.000.
+
 
