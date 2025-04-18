@@ -1,4 +1,4 @@
-% TASK 1
+% Task 1
 % Facts
 person(peter).
 person(mary).
@@ -12,8 +12,7 @@ married(lilly, joseph).
 
 invited(mary, tom).
 
-% RULES
-
+% rules  
 liveTogether(X, Y) :- married(X, Y).
 liveTogether(X, Y) :- married(Y, X).
 
@@ -27,7 +26,7 @@ livesAlone(X) :-
     \+ liveTogether(X, _),
     \+ visiting(X, _).
 
-% TASK 2
+% Task 2
 getZeroValues([], []) :- !.
 
 getZeroValues([0 | T], [0 | ZT]) :-
@@ -37,7 +36,7 @@ getZeroValues([H | T], ZT) :-
     H =\= 0,
     getZeroValues(T, ZT), !.
 
-% TASK 3 
+% Task 3 
 monotonicallyDecreasing([]) :- !.
 
 monotonicallyDecreasing([_]) :- !.
