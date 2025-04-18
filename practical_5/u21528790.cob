@@ -37,9 +37,9 @@
            MOVE MEAN TO MEAN-DISPLAY
            MOVE VARIANCE TO VARIANCE-DISPLAY
 
-           DISPLAY "Range: " RANGE-DISPLAY 
-           DISPLAY "Mean: " MEAN-DISPLAY 
-           DISPLAY "Variance: " VARIANCE-DISPLAY
+           DISPLAY "Range: " RANGE 
+           DISPLAY "Mean: " MEAN 
+           DISPLAY "Variance: " VARIANCE
 
            STOP RUN.
 
