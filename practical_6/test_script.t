@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Test::More tests => 5;
 
-require './script.pl';
+require './u21528790.pl';
 
 is(find_student_number(["1234567, Alice Jane Brown", "7654321, Bob Joe Smith"], 3),
    "None found", 'No matching students');
