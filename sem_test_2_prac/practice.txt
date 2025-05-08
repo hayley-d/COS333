@@ -54,3 +54,29 @@ false.
 witcher_without_monster(lambert).
 true.
 ```
+
+Write a predicate 'trainers_evolve_pokemon' that returns if two trainers have pokemon that are on the same evolution branch.
+```prolog
+evolves_into(igglybuff, jigglytuff).
+evolves_into(jigglypuff, wigglytuff).
+evolves_into(happiny, chansey).
+evolves_into(chansey, blissey).
+evolves_into(cleffa, clefairy).
+evolves_into(clefairy, clefable).
+evolves_into(gastly, haunter).
+evolves_into(haunter, gengar).
+
+trainer(hayley, gengar).
+trainer(ash, gastly).
+trainer(mallow, happiny).
+trainer(hayley, clefable).
+```
+
+Must Pass
+```
+trainers_evolve_pokemon(hayley).
+true.
+
+trainers_evolve_pokemon(mallow).
+false.
+```
