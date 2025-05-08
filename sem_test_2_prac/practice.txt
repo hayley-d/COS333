@@ -1,0 +1,56 @@
+### Practice Prolog (eww) Questions
+
+Write a prolog predicate called `witcher_contracts` which succeeds if witcher `X` has a contract on monster `Y`.
+Dummy Data:
+```prolog
+monster(wyvern).
+monster(leshen).
+monster(kikimora).
+monster(fiend).
+monster(griffin).
+monster(basilisk).
+
+witcher(geralt).
+witcher(vesemir).
+witcher(coen).
+witcher(lambert).
+
+contract(geralt, wyvern, novigrad).
+contract(geralt, leshen, velen).
+contract(vesemir, kikimora, skellige).
+contract(geralt, fiend, ard skellig).
+contract(yen, fiend, novigrad).
+contract(vesemir, fiend, ard_skellig).
+contract(coen, griffin, whiteorchard).
+contract(jaskier, basilisk, kaer_morhen).
+```
+Must Pass:
+```
+witcher_contracts(geralt, leshen).
+true.
+
+witcher_contracts(yen, fiend).
+false.
+
+witcher_contracts(vesemir,griffin).
+false.
+```
+
+Write a predicate called `multiple_contracts' which succeeds if witcher 'X' has multiple active contracts. (same data)
+Must Pass:
+```
+multiple_contracts(geralt).
+true.
+
+multiple_contracts(jaskier).
+false.
+```
+Write a predicate called `witcher_without_monster' which finds  if a witcher has contracts for any monsters 
+Must Pass:
+```
+witcher_without_monster(geralt).
+false.
+
+witcher_without_monster(lambert).
+true.
+```
