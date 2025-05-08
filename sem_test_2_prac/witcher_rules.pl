@@ -11,3 +11,6 @@ allies(geralt,triss).
 enemies(geralt,eredin).
 enemies(yen,triss).
 enemies(yen, eredin).
+
+% Define kill rule
+can_kill(X,Y) :- witcher(X), monster(Y).
