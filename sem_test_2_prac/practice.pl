@@ -54,9 +54,6 @@ trainers_evolve_pokemon(Trainer) :-
     trainer(_, Y),
     same_evo_tree(Y,Poke).
 
-    
-
-
 same_evo_tree(X,Y) :- evolves_into(X,Y);evolves_into(Y,X).
 same_evo_tree(X,Y) :- 
     evolves_into(Y,Z),
@@ -64,5 +61,8 @@ same_evo_tree(X,Y) :-
     evolves_into(X,Z),
     evolves_into(Z,Y).
 
+pokemon_without_trainer(X) :- \+ trainer(_,X).
 
-
+baby_pokes(X) :-
+    \+ evolves_into(_,X).
+   
