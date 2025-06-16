@@ -1,0 +1,20 @@
+% This buffer is for notes you don't want to save.
+% If you want to create a file, visit that file with C-x C-f,
+% then enter the text in that file's own buffer.
+person(peter).
+person(mary).
+person(tom).
+person(lilly).
+person(joseph).
+person(rob).
+married(peter,mary).
+married(lilly,joseph).
+invited(mary,tom).
+
+liveTogether(X,Y) :=
+married(X,Y);
+married(Y,X).
+
+liveTogether(peter,mary).
+
+
