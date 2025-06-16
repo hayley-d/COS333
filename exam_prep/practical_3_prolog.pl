@@ -30,3 +30,37 @@ livesAlone(X) :-
     \+ invited(X,_),
     \+ married(_,X),
     \+ invited(_,X).
+
+getZeroValues([], []) :- !.
+
+getZeroValues([0 | T], [0 | ZT]) :-
+    getZeroValues(T, ZT), !.
+
+getZeroValues([H | T], ZT) :-
+    H =\= 0,
+    getZeroValues(T, ZT), !.
+
+
+getPositiveValues([],[]) :- !.
+getPositiveValues([H|T],[H|Z]) :-
+    H >= 0,
+    getPositiveValues(T,Z), !.
+
+getPositiveValues([H|T],Z) :-
+    H < 0,
+    getPositiveValues(T,Z), !.
+
+getNegativeValues([],[]) :- !.
+getNegativeValues([H|T],[H|Z]) :-
+    H < 0,
+    getNegativeValues(T,Z),
+    !.
+getNegativeValues([H|T],Z):-
+    H >= 0,
+    getNegativeValues(T,Z),!.
+
+monotonicallyDecreasing([]) :- !.
+monotonicallyDecreasing([_]) :- !.
+monotonicallyDecreasing([F,S|T]) :-
+    F > S,
+    monotonicallyDecreasing([S|T]), !.
