@@ -11,10 +11,13 @@ married(peter,mary).
 married(lilly,joseph).
 invited(mary,tom).
 
-liveTogether(X,Y) :=
+liveTogether(X,Y) :-
 married(X,Y);
 married(Y,X).
 
-liveTogether(peter,mary).
+inRelationship(X) :-
+married(X,_);
+married(_,X).
+
 
 
