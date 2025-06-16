@@ -64,3 +64,17 @@ monotonicallyDecreasing([_]) :- !.
 monotonicallyDecreasing([F,S|T]) :-
     F > S,
     monotonicallyDecreasing([S|T]), !.
+
+stripPositivesAbsNegativesIncZeros([],[]) :- !.
+stripPositivesAbsNegativesIncZeros([H|T],Z) :-
+    H > 0,
+    stripPositivesAbsNegativesIncZeros(T,Z), !.
+
+stripPositivesAbsNegativesIncZeros([H|T],[X|Z]) :-
+    H < 0,
+    X is -1*H,
+    stripPositivesAbsNegativesIncZeros(T,Z), !.
+
+stripPositivesAbsNegativesIncZeros([H|T],[H|Z]) :-
+    H =:= 0,
+    stripPositivesAbsNegativesIncZeros(T,Z), !.
