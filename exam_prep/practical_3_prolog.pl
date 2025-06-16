@@ -20,4 +20,13 @@ married(X,_);
 married(_,X).
 
 
+visiting(X,Y) :-
+    invited(Y,X);
+    invited(Z,X),
+    married(Y,Z).
 
+livesAlone(X) :-
+    \+ married(X,_),
+    \+ invited(X,_),
+    \+ married(_,X),
+    \+ invited(_,X).
