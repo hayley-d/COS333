@@ -1,0 +1,70 @@
+father(joe, jane).
+father(joe, dan).
+father(bill, ted).
+father(dan, alice).
+mother(mary, jane).
+mother(mary, dan).
+mother(jane, ted).
+mother(linda, alice).
+
+isSibling(X,Y) :-
+    (   (mother(M,X),mother(M,Y));(father(F,X),father(F,Y))).
+
+isCousin(X,Y) :-
+    (
+        (   mother(M1,X),mother(M2,Y),isSibling(M1,M2));
+        (   mother(M1,X),father(F1,Y),isSibling(M1,F1));
+        (   father(F1,X),father(F2,Y),isSibling(F1,F2));
+        (   father(F,X),mother(M,Y),isSibling(F,M))).
+
+sumNonNegativeValues([], 0) :- !.
+sumNonNegativeValues([H|T], X) :-
+    H < 0,
+    sumNonNegativeValues(T,X), !.
+sumNonNegativeValues([H|T], X):-
+    H >= 0,
+    sumNonNegativeValues(T,Y),
+    X is Y + H,
+    !.
+
+doublePositiveAbsNegative([],[]) :- !.
+doublePositiveAbsNegative([H|T],[X|R]) :-
+    H > 0,
+    X is H*2,
+    doublePositiveAbsNegative(T,R), !.
+doublePositiveAbsNegative([H|T],[Y|Z]) :-
+    H < 0,
+    Y is H * -1,
+    doublePositiveAbsNegative(T,Z), !.
+
+countAbsNegative([],0) :- !.
+countAbsNegative([H|T],X):-
+    H < 0,
+    Y is H * -1,
+    countAbsNegative(T,Z),
+    X is Z + Y, !.
+countAbsNegative([H|T],X) :-
+    H >= 0,
+    countAbsNegative(T,X), !.
+
+addEven([],0) :- !.
+
+addEven([H|T],X) :-
+    Z is H mod 2,
+    Z =\= 0,
+    addEven(T,X), !.
+
+addEven([H|T],X) :-
+    Z is H mod 2,
+    Z =:= 0,
+    addEven(T,Y),
+    X is H + Y, !.
+
+stripOccurrences(_,[],[]) :- !.
+stripOccurrences(X,[H|T],[H,Z]) :-
+    X \== H,
+    stripOccurrences(X,T,Z), !.
+stripOccurrences(X,[H|T],Z) :-
+    X == H,
+    stripOccurrences(X,T,Z), !.
+
